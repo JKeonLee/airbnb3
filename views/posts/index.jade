@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .container
+    h1.page-header 게시글 목록
+    
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          th 작성자
+          th 글 제목
+          th 내용
+          th 작성일시
+          th 
+      tbody
+        each post in posts
+          tr
+            td
+              a(href='/users/#{post.owner._id}')= post.owner.username
+            td
+              a(href='/posts/#{post._id}')= post.title
+            td= post.body
+            td= moment(post.createdAt).format('YYYY-MM-DD HH:mm:ss')
+            td
+              a.btn.btn-xs.btn-default(href='/posts/#{post._id}/edit') 수정
+              | 
+              a.btn.btn-xs.btn-default(href='/posts/#{post._id}?_method=DELETE') 삭제
+    a.btn.btn-primary(href='/posts/new') 새 글 작성
