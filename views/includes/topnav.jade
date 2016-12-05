@@ -10,10 +10,14 @@
         i.fa.fa-home
     #navbar.collapse.navbar-collapse
       ul.nav.navbar-nav
-        li
-          a(href='/users') Users
-        li
-          a(href='/posts') Posts
+        if(currentUser && currentUser.name=='admin')
+          li
+            a(href='/users') Users
+          li
+            a(href='/posts') Posts
+        else
+          li
+            a(href='/posts') Posts
       ul.nav.navbar-nav.navbar-right
         if (!currentUser) 
           li

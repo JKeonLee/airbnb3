@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  .container
+    h1.page-header 게시물 작성
+    form(action='/posts', method='POST')
+      .form-group
+        label(for='title') Title
+        input.form-control(type='text', id='title', name='title', placeholder='Title')
+      .form-group
+        label(for='body') Body
+        input.form-control(type='text', id='body', name='body', placeholder='Body')
+      div.form-actions
+        a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
+        | 
+        button.btn.btn-primary(type='submit') 작성
