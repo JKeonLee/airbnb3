@@ -18,3 +18,4 @@ var schema = new Schema({
 var Post = mongoose.model('Post', schema);
 
 module.exports = Post;
+

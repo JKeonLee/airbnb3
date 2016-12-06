@@ -10,23 +10,23 @@
         i.fa.fa-home
     #navbar.collapse.navbar-collapse
       ul.nav.navbar-nav
-        if(currentUser && currentUser.name=='admin')
+        if(currentUser && currentUser.host_type=='admin')
           li
-            a(href='/users') Users
+            a(href='/users') 사용자 목록
           li
-            a(href='/posts') Posts
+            a(href='/posts') 방 예약
         else
           li
-            a(href='/posts') Posts
+            a(href='/posts') 방 예약
       ul.nav.navbar-nav.navbar-right
         if (!currentUser) 
           li
-            a(href='/signin') Signin
+            a(href='/signin') 로그인
           li
-            a(href='/users/new') Signup
+            a(href='/users/new') 회원가입
         else
           li
-            a(href='/users/#{currentUser._id}') Profile
+            a(href='/users/#{currentUser._id}') 프로필
           li
-            a(href='/signout') Signout
+            a(href='/signout') 로그아웃
           
