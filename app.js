@@ -14,8 +14,6 @@ var configAuth = require('./config/auth');
 var routes = require('./routes/index'),
     users = require('./routes/users'),
     posts = require('./routes/posts');
-    guests = require('./routes/guests');
-    hosts = require('./routes/hosts');
 
 var routeAuth = require('./routes/auth');
 
@@ -54,8 +52,6 @@ module.exports = function(app, io) {
   app.use(express.static(path.join(__dirname, 'public')));
   app.use('/bower_components',  express.static(path.join(__dirname, '/bower_components')));
 
-
-
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -69,8 +65,6 @@ module.exports = function(app, io) {
 
   app.use('/', routes);
   app.use('/users', users);
-  app.use('/guests', guests);
-  app.use('/hosts', hosts);
   app.use('/posts', posts);
   routeAuth(app, passport);
 

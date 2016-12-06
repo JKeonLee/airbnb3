@@ -1,16 +1,46 @@
 extends ../layout
 
 block content
+  script(src='/public/javascripts/post.js')
   .container
-    h1.page-header 게시물 작성
+    h1.page-header 내 숙소 등록
     form(action='/posts', method='POST')
       .form-group
-        label(for='title') Title
-        input.form-control(type='text', id='title', name='title', placeholder='Title')
+        label(for='title') 제목
+        input.form-control(type='text', id='title', name='title', placeholder='제목을 입력하세요')
       .form-group
-        label(for='body') Body
-        input.form-control(type='text', id='body', name='body', placeholder='Body')
+        label(for='address') 상세 주소
+        input.form-control(type='text', id='address', name='address', placeholder='상세 주소를 적어주세요')
+      label(style="display:block;") 도시
+      div.form-box
+        select.selectpicker(data-live-search="true", class="cities")
+          each city in cities
+            option= city
+      .form-group
+        label(for='price') 비용
+        | 
+        i.fa.fa-usd(aria-hidden="true")
+        input.form-control(type='number', min="1", id='price', name='price', placeholder='비용')
+      label(style="display:block;") 방 개수
+      div.form-box
+        select.selectpicker(class="room")
+          - for (var i = 0; i <= 10; ++i) {
+            option= i
+          - }
+      label(style="display:block;") 화장실 개수
+      div.form-box
+        select.selectpicker(class="toilet")
+          - for (var i = 0; i <= 5; ++i) {
+            option= i
+          - }
+      .form-group
+        label(for='info') 주의사항
+        input.form-control(type='text', id='info', name='info', placeholder='주의사항을 작성해주세요')
+
+
+
       div.form-actions
         a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
         | 
         button.btn.btn-primary(type='submit') 작성
+

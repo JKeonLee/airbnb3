@@ -3,8 +3,13 @@ var mongoose = require('mongoose'),
     ObjectId = Schema.ObjectId;
 
 var schema = new Schema({
-  title: {type: String, trim: true},
-  body: {type: String},
+  title: {type: String, required: true},
+  city: {type: String, required: true},
+  address: {type: String},
+  price:{type: Number, required: true, trim: true},
+  room:{type: Number, required: true},
+  toilet:{type: Number, required: true},
+  info: {type: String},
   owner: {
     username: {type: String},
     _id: {type: ObjectId}

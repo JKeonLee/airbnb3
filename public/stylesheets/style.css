@@ -149,6 +149,12 @@ form.todos .actions button {
 .side .section a:hover, .side .section a.selected:hover {
   background-color: #337AB7; }
 
+.cities {
+  z-index: 1031; }
+
+.form-box {
+  margin-bottom: 15px; }
+
 .form-signin {
   width: 320px;
   height: 300px;
