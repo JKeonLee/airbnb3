@@ -1,35 +1,34 @@
 extends ../layout
 
 block content
-  script(src='/public/javascripts/post.js')
   .container
     h1.page-header 내 숙소 등록
     form(action='/posts', method='POST')
       .form-group
         label(for='title') 제목
         input.form-control(type='text', id='title', name='title', placeholder='제목을 입력하세요')
+      label(for='cities', style="display:block;") 도시
+      div.form-box
+        select.selectpicker(data-live-search="true", class="cities", name="cities", id="cities")
+          each city in cities
+            option= city
       .form-group
         label(for='address') 상세 주소
         input.form-control(type='text', id='address', name='address', placeholder='상세 주소를 적어주세요')
-      label(style="display:block;") 도시
-      div.form-box
-        select.selectpicker(data-live-search="true", class="cities")
-          each city in cities
-            option= city
       .form-group
         label(for='price') 비용
         | 
         i.fa.fa-usd(aria-hidden="true")
         input.form-control(type='number', min="1", id='price', name='price', placeholder='비용')
-      label(style="display:block;") 방 개수
+      label(for='rooms', style="display:block;") 방 개수
       div.form-box
-        select.selectpicker(class="room")
+        select.selectpicker(class="room", name="rooms", id="rooms")
           - for (var i = 0; i <= 10; ++i) {
             option= i
           - }
-      label(style="display:block;") 화장실 개수
+      label(for='toilets', style="display:block;") 화장실 개수
       div.form-box
-        select.selectpicker(class="toilet")
+        select.selectpicker(class="toilet", name="toilets", id="toilets")
           - for (var i = 0; i <= 5; ++i) {
             option= i
           - }
@@ -43,4 +42,8 @@ block content
         a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
         | 
         button.btn.btn-primary(type='submit') 작성
-
+  script.
+    $('.selectpicker').selectpicker({
+      style: 'btn-info',
+      size: 4
+    });

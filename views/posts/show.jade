@@ -2,11 +2,16 @@ extends ../layout
 
 block content
   .container
-    h1.page-header 숙소 정보
+    h1.page-header 상세 정보
           
     ul
-      li 글 제목: #{post.title}
-      li 내용: #{post.body}
+      li 제목: #{post.title}
+      li 도시: #{post.city}
+      li 상세 주소 : #{post.address}
+      li 비용($) : #{post.price}
+      li 방 개수 : #{post.room}
+      li 화장실 개수 : #{post.toilet}
+      li 주의사항 : #{post.info}
 
     hr
     p

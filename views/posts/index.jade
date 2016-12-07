@@ -2,15 +2,15 @@ extends ../layout
 
 block content
   .container
-    h1.page-header 게시글 목록
+    h1.page-header 숙소 목록
     
     table.table.table-striped.table-bordered
       thead
         tr
           th 작성자
-          th 호스트 제목
-          th 내용
-          th 작성일시
+          th 제목
+          th 도시
+          th 등록일시
           th 
       tbody
         each post in posts
@@ -19,7 +19,7 @@ block content
               a(href='/users/#{post.owner._id}')= post.owner.username
             td
               a(href='/posts/#{post._id}')= post.title
-            td= post.body
+            td= post.city
             td= moment(post.createdAt).format('YYYY-MM-DD HH:mm:ss')
             td
               a.btn.btn-xs.btn-default(href='/posts/#{post._id}/edit') 수정
