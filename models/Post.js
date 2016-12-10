@@ -4,7 +4,6 @@ var mongoose = require('mongoose'),
 
 var schema = new Schema({
   title: {type: String, required: true},
-  city: {type: String, required: true},
   address: {type: String, required: true},
   price:{type: Number, required: true, trim: true},
   room:{type: Number, required: true},

@@ -6,7 +6,6 @@ block content
           
     ul
       li 제목: #{post.title}
-      li 도시: #{post.city}
       li 상세 주소 : #{post.address}
       li 비용($) : #{post.price}
       li 방 개수 : #{post.room}
@@ -15,8 +14,10 @@ block content
 
     hr
     p
-      a.btn.btn-default(href='/posts/') 게시글 목록
-      | 
-      a.btn.btn-default(href='/posts/#{post._id}/edit') 게시글 수정
-      | 
-      a.btn.btn-default(href='/posts/#{post._id}?_method=DELETE') 게시글 삭제
+      if(currentUser)
+        if(currentUser._id.toString()==post.owner._id.toString())
+          a.btn.btn-default(href='/posts/#{post._id}/edit') 게시글 수정
+          | 
+          a.btn.btn-default(href='/posts/#{post._id}?_method=DELETE') 게시글 삭제
+        else
+          a.btn.btn-default(href='/posts/') 숙소 목록

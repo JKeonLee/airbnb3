@@ -8,8 +8,10 @@ img#outside {
 img#inside {
   width: 50%; }
 
-img#host {
-  width: 50%; }
+img#signup {
+  margin-left: 10em;
+  width: 40%;
+  float: center; }
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -149,10 +151,13 @@ form.todos .actions button {
 .side .section a:hover, .side .section a.selected:hover {
   background-color: #337AB7; }
 
-.cities {
-  z-index: 1031; }
-
 .form-box {
+  margin-bottom: 15px; }
+
+.form-control {
+  width: 300px; }
+
+#sample5_address {
   margin-bottom: 15px; }
 
 .form-signin {

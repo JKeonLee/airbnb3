@@ -22,7 +22,12 @@ block content
             td= post.city
             td= moment(post.createdAt).format('YYYY-MM-DD HH:mm:ss')
             td
-              a.btn.btn-xs.btn-default(href='/posts/#{post._id}/edit') 수정
-              | 
-              a.btn.btn-xs.btn-default(href='/posts/#{post._id}?_method=DELETE') 삭제
-    a.btn.btn-primary(href='/posts/new') 새 글 작성
+              if(currentUser._id.toString()==post.owner._id.toString())
+                a.btn.btn-xs.btn-default(href='/posts/#{post._id}/edit') 수정
+                | 
+                a.btn.btn-xs.btn-default(href='/posts/#{post._id}?_method=DELETE') 삭제
+    div
+      form.search-form(role='search', method='GET', action='/posts/index')
+        input.form-control(type='text', id='search_keyword', name='search_keyword', placeholder='도시로 검색하기')
+        button.btn.btn-default(type='submit') 검색
+        a.btn.btn-primary(href='/posts/new') 호스팅하기
