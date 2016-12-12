@@ -146,7 +146,7 @@ router.get('/:id/manage',needAuth, function(req, res, next) {
     }
     Reservation.find({post_id:post._id}, function(err, reservations){
       res.render('posts/manage', {post: post, reservations: reservations});
-    })
+    });
   });
 });
 
