@@ -24,7 +24,7 @@ block content
                 td= moment(reservation.createdAt).format('YYYY-MM-DD HH:mm:ss')
                 td
                     if(reservation.status == 1)
-                        span 예약완료
+                        span#complete 예약완료
                     else
                         a.btn.btn-xs.btn-default(href='/reservations/#{reservation._id}?_method=PUT') 승인
                         a.btn.btn-xs.btn-default(href='/reservations/#{reservation._id}?_method=DELETE') 거절

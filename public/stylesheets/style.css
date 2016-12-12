@@ -166,6 +166,10 @@ form.todos .actions button {
 .btn-xs.btn-default#waiting {
   color: red; }
 
+#complete {
+  color: blue;
+  font-size: 1.3em; }
+
 .form-signin {
   width: 320px;
   height: 300px;

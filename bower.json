@@ -21,5 +21,8 @@
     "lodash": "~3.10.1",
     "moment": "~2.10.6",
     "socket.io-client": "~1.3.7"
+  },
+  "devDependencies": {
+    "bootstrap-select": "^1.12.1"
   }
 }
