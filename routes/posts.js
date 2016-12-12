@@ -38,12 +38,25 @@ router.get('/', needAuth, function(req, res, next) {
     if (err) {
       return next(err);
     }
-    Post.find({}, function(err, posts) {
-    if (err) {
-      return next(err);
+    var keyword = req.query.search_keyword;
+
+    if(keyword){
+      Post.find({$text:{$search:keyword}}, function(err, posts) {
+      if (err) {
+        return next(err);
+      }
+        res.render('posts/index', {users: users, posts: posts});
+      });
+    } else {
+      Post.find({}, function(err, posts) {
+      if (err) {
+        return next(err);
+      }
+        res.render('posts/index', {users: users, posts: posts});
+      });
     }
-    res.render('posts/index', {users: users, posts: posts});
-    });
+
+
   });
     
 });
@@ -78,7 +91,10 @@ router.put('/:id',needAuth, function(req, res, next) {
     }
 
     post.title = req.body.title;
-    post.address = req.address;
+    post.address = req.body.address;
+    post.room = req.body.room;
+    post.toilet = req.body.toilet;
+    post.info = req.body.info;
     
     post.save(function(err) {
       if (err) {

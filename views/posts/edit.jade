@@ -4,7 +4,7 @@ script(type='text/javascript', src='//apis.daum.net/maps/maps3.js?apikey=74673')
 block content
   .container
     h1.page-header 게시글 수정
-    form(action='/posts', method='POST')
+    form(action='/posts/#{post._id}?method=PUT', method='POST')
       .form-group
         label(for='title') 제목
         input.form-control(type='text', id='title', name='title', value='#{post.title}')
@@ -79,13 +79,21 @@ block content
       div.form-box
         select.selectpicker(class="room", name="rooms", id="rooms")
           - for (var i = 0; i <= 10; ++i) {
-            option= i
+            -  if(post.room == i){
+                option(selected='')=i
+            -  }else{
+                option = i
+            -  }
             -}
       label(for='toilets', style="display:block;") 화장실 개수
       div.form-box
         select.selectpicker(class="toilet", name="toilets", id="toilets")
-          - for (var i = 0; i <= 5; ++i) {
-            option= i
+          - for (var i = 0; i<=5; i++){
+          -   if(post.toilet == i){
+                option(selected='')=i
+          -   }else{
+                option = i
+          -   }
           - }
       .form-group
         label(for='info') 주의사항

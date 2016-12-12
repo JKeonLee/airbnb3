@@ -19,6 +19,8 @@ var schema = new Schema({
   toObject: {virtuals: true}
 });
 
+schema.index({address: "text"});
+
 var Post = mongoose.model('Post', schema);
 
 module.exports = Post;

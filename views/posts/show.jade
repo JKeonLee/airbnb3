@@ -1,5 +1,5 @@
 extends ../layout
-
+script(type='text/javascript', src='//apis.daum.net/maps/maps3.js?apikey=74673')
 block content
   .container
     h1.page-header 상세 정보
@@ -11,8 +11,6 @@ block content
       li 방 개수 : #{post.room}
       li 화장실 개수 : #{post.toilet}
       li 주의사항 : #{post.info}
-
-    hr
     p
       if(currentUser)
         if(currentUser._id.toString()==post.owner._id.toString())
