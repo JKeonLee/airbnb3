@@ -26,8 +26,13 @@ block content
                 a.btn.btn-xs.btn-default(href='/posts/#{post._id}/edit') 수정
                 | 
                 a.btn.btn-xs.btn-default(href='/posts/#{post._id}?_method=DELETE') 삭제
+                | 
+                a.btn.btn-xs.btn-default(href='/posts/#{post._id}/manage') 예약관리
               else
-                a.btn.btn-xs.btn-default(href='/reservations/new/#{post._id}') 예약신청
+                if(post.reservation != null)
+                  a.btn.btn-xs.btn-default#waiting(href='/reservations/#{post.reservation}') 예약중
+                else
+                  a.btn.btn-xs.btn-default(href='/reservations/new/#{post._id}') 예약신청
 
     div.row
       div.col-sm-6

@@ -160,6 +160,12 @@ form.todos .actions button {
 #sample5_address {
   margin-bottom: 15px; }
 
+.btn-default#cancel {
+  color: red; }
+
+.btn-xs.btn-default#waiting {
+  color: red; }
+
 .form-signin {
   width: 320px;
   height: 300px;

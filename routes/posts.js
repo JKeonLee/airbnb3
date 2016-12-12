@@ -1,6 +1,8 @@
 var express = require('express'),
     Post = require('../models/Post'),
-    User = require('../models/User');
+    User = require('../models/User'),
+    Reservation = require('../models/Reservation'),
+    _ = require('lodash');
 var router = express.Router();
 
 function needAuth(req, res, next) {
@@ -45,14 +47,26 @@ router.get('/', needAuth, function(req, res, next) {
       if (err) {
         return next(err);
       }
-        res.render('posts/index', {users: users, posts: posts});
+        Reservation.find({user_id: req.user._id}, function(err, reservations){
+          posts.map(function(post, index){
+            var rev = _.find(reservations, {post_id: post._id});
+            post.reservation = rev ? rev._id : null;
+          });
+          res.render('posts/index', {users: users, posts: posts});
+        });
       });
     } else {
       Post.find({}, function(err, posts) {
       if (err) {
         return next(err);
       }
-        res.render('posts/index', {users: users, posts: posts});
+        Reservation.find({user_id: req.user._id}, function(err, reservations){
+          posts.map(function(post, index){
+            var rev = _.find(reservations, {post_id: post._id});
+            post.reservation = rev ? rev._id : null;
+          });
+          res.render('posts/index', {users: users, posts: posts});
+        });
       });
     }
 
@@ -122,6 +136,17 @@ router.get('/:id',needAuth, function(req, res, next) {
       return next(err);
     }
     res.render('posts/show', {post: post});
+  });
+});
+
+router.get('/:id/manage',needAuth, function(req, res, next) {
+  Post.findById(req.params.id, function(err, post) {
+    if (err) {
+      return next(err);
+    }
+    Reservation.find({post_id:post._id}, function(err, reservations){
+      res.render('posts/manage', {post: post, reservations: reservations});
+    })
   });
 });
 

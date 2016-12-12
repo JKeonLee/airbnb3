@@ -1,6 +1,6 @@
 var express = require('express'),
     Post = require('../models/Post'),
-    User = require('../models/User');
+    User = require('../models/User'),
     Reservation = require('../models/Reservation');
 var router = express.Router();
 
@@ -43,6 +43,16 @@ router.get('/', needAuth, function(req, res, next) {
     });
 });
 
+router.get('/:id', needAuth, function(req, res, next) {
+  var id = req.params.id;
+  Reservation.findOne({_id: id} ,function(err, reservation) {
+    if (err) {
+      return next(err);
+    }
+    res.render('reservations/show', {reservation:reservation});
+    });
+});
+
 router.get('/new/:id', needAuth, function(req, res, next) {
   var post_id = req.params.id;
   User.find({}, function(err, users) {
@@ -56,6 +66,39 @@ router.get('/new/:id', needAuth, function(req, res, next) {
     }
     res.render('reservations/new', {post:post});
     });
+});
+
+router.delete('/:id', function(req, res, next) {
+  Reservation.findOneAndRemove({_id: req.params.id}, function(err) {
+    if (err) {
+      return next(err);
+    }
+    req.flash('success', '예약이 취소되었습니다.');
+    res.redirect('/posts');
+  });
+});
+
+router.put('/:id',needAuth, function(req, res, next) {
+
+  Reservation.findById({_id: req.params.id}, function(err, reservation) {
+    if (err) {
+      return next(err);
+    }
+    if (!reservation) {
+      req.flash('danger', '존재하지 않는 예약입니다.');
+      return res.redirect('back');
+    }
+
+    reservation.status = 1;
+    
+    reservation.save(function(err) {
+      if (err) {
+        return next(err);
+      }
+      req.flash('success', '예약이 승인되었습니다.');
+      res.redirect('back');
+    });
+  });
 });
 
 router.post('/:id', needAuth, function(req, res, next) {
